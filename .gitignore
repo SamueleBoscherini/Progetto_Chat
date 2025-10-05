@@ -1,0 +1,12 @@
+prova/src/Client1.class
+prova/src/ThreadReader.class
+prova/src/ThreadWriter.class
+prova/bin
+prova/lib
+client2/src/Client1.class
+client2/src/ThreadReader.class
+client2/src/ThreadWriter.class
+client2/bin
+client2/lib
+Server/bin
+Server/lib

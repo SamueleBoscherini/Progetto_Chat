@@ -2,6 +2,7 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class ThreadWriter extends Thread {
+    Gui gui;
     private PrintWriter out;
     private Scanner scn = new Scanner(System.in);        
     private String messaggio;
@@ -13,10 +14,17 @@ public class ThreadWriter extends Thread {
     @Override
     public void run() {
         do {
-            messaggio = scn.next();
-            out.println(messaggio);
+            System.out.println(messaggio);
         } while (!messaggio.equals("end"));
 
         scn.close();
+    }
+
+    public void setMessage(String messaggio){
+        this.messaggio = messaggio;
+    }
+
+    public void setGui(Gui gui){
+        this.gui = gui;
     }
 }

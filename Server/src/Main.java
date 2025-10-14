@@ -6,15 +6,18 @@ import java.util.Scanner;
 public class Main {
     public synchronized static void main(String[] args)  throws IOException{
         Scanner scn = new Scanner(System.in);
+        int num = 1;
         System.out.println("Sto aspettando un client");
         ServerSocket ss = new ServerSocket(3000);
         
         Socket sc = ss.accept();
         ClientThread t1 = new ClientThread(sc);
+        num = t1.setNameThread(num);
         System.out.println("primo client connesso");
         
         Socket sc2 = ss.accept();
         ClientThread t2 = new ClientThread(sc2);
+        num = t2.setNameThread(num);
         System.out.println("secondo client connesso");
         
         t1.setThread(t2);

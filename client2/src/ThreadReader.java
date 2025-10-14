@@ -3,10 +3,12 @@ import java.io.IOException;
 
 public class ThreadReader extends Thread {
     private BufferedReader in;
-    private String messaggio;
+    private Gui gui;
+    private String messaggio = "";
 
-    public ThreadReader(BufferedReader in){
+    public ThreadReader(BufferedReader in, Gui gui){
         this.in = in;
+        this.gui = gui;
     }
 
     @Override
@@ -14,8 +16,12 @@ public class ThreadReader extends Thread {
         try {
             do {
                 messaggio = in.readLine();
+                if(messaggio.equals("end")) break;
+                gui.setMessage(messaggio + "\n");
                 System.out.println(messaggio);
-            } while (!messaggio.equals("end"));
+            } while (true);
+            System.out.println("Il Client1 è uscito dalla chat digita 'end' per chiudere la chat");
+
         } catch (IOException e) {
             e.printStackTrace();
         }

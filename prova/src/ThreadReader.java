@@ -1,12 +1,13 @@
 import java.io.BufferedReader;
-import java.io.IOException;
 
 public class ThreadReader extends Thread {
     private BufferedReader in;
+    private Gui gui;
     private String messaggio = "";
 
-    public ThreadReader(BufferedReader in){
+    public ThreadReader(BufferedReader in, Gui gui){
         this.in = in;
+        this.gui = gui;
     }
 
     @Override
@@ -14,9 +15,13 @@ public class ThreadReader extends Thread {
         try {
             do {
                 messaggio = in.readLine();
+                if(messaggio.equals("end")) break;
+                gui.setMessage(messaggio + "\n");
                 System.out.println(messaggio);
-            } while (!messaggio.equals("end"));
-        } catch (IOException e) {
+            } while (true);
+
+            System.out.println("Il Client2 è uscito dalla chat digita 'end' per chiudere la chat");
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

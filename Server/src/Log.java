@@ -45,27 +45,13 @@ public class Log {
             List<String> lista = flusso.collect(Collectors.toList());
             
             for (String a : lista) {
-                switch (tName) {
-                    case "1":
-                        if(a.charAt(0) == tName.charAt(0)){
-                            out.println("Tu:" + a.substring(2));
-                        } else {
-                            out.println("Client2: " + a.substring(2));
-                        }
-                        break;
-                    case "2":
-                        if(a.charAt(0) == tName.charAt(0)){
-                            out.println("Tu:" + a.substring(2));
-                        } else {
-                            out.println("Client1:" + a.substring(2));
-                        }
-                        break;
-                
-                    default:
-                        break;
+
+                if(a.charAt(0) == tName.charAt(0)){
+                    out.println("Tu:" + a.substring(2));
+                } else {
+                    out.println("Client "+ tName + ": " + a.substring(2));
                 }
             }
         }
     }
-
 }

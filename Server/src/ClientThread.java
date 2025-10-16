@@ -8,22 +8,21 @@ public class ClientThread  extends Thread {
     Socket ss;
     Log log;
     String messaggio;
-    ClientThread t2 = null;
+    ListaThread lista;
     BufferedReader in;
     PrintWriter out;
-    public ClientThread(Socket ss ){
+
+    public ClientThread(Socket ss, ListaThread lista ){
         this.ss = ss;
         messaggio = "";
         log = new Log();
+        this.lista = lista;
     }
 
-    public void setThread(ClientThread t2){
-        this.t2 = t2;
-    }
 
-    public void sendMassage(String c){
+    public void sendMassage(String c,ClientThread t){
         synchronized(this){
-            t2.out.println(c);
+            t.out.println(c);
         }
         
     }
@@ -40,7 +39,7 @@ public class ClientThread  extends Thread {
             do {
                 messaggio = in.readLine();
                 log.createLog(messaggio, getName());
-                sendMassage("Client"+ getName() + ": " + messaggio);
+                lista.broadcast(messaggio, this);;
             } while (!messaggio.equals("end"));
             log.closeLog();
         } catch (IOException e) {
